@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infinite Scrolling Example</title>
+  <style>
+    #content {
+      height: 1000px; /* Set a fixed height for demonstration purposes */
+    }
+    #content p {
+      width: 100%;
+      height: 25vh;
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <!-- Your initial content goes here -->
+    <p>Item 1</p>
+    <p>Item 2</p>
+    <p>Item 3</p>
+    <p>Item 4</p>
+    <p>Item 5</p>
+    <!-- Add more items as needed -->
+  </div>
+
+  <script>
+    let loadCount = 1;
+
+    // Function to check if the user has scrolled to the bottom of the page
+    function isBottomOfPage() {
+      return window.innerHeight + window.scrollY >= document.body.offsetHeight;
+    }
+
+    // Function to load more content
+    function loadMoreContent() {
+      // Simulate loading more content (replace this with your actual data fetching logic)
+      const newContent = document.createElement('p');
+      newContent.textContent = `New Item ${loadCount}`;
+      document.getElementById('content').appendChild(newContent);
+      loadCount++;
+    }
+
+    // Event listener for scroll events
+    window.addEventListener('scroll', () => {
+      if (isBottomOfPage()) {
+        loadMoreContent();
+      }
+    });
+  </script>
+</body>
+</html>
